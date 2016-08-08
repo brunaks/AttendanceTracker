@@ -19,6 +19,10 @@ public class Schedule {
         return endTime;
     }
 
+    public Days getDay() {
+        return day;
+    }
+
     public enum Days {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }

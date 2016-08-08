@@ -21,19 +21,11 @@ public class AddClassRoute implements Route {
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
-        Class myClass = new Class();
-        myClass.addName(request.queryParams("className"));
-        Schedule schedule = new Schedule();
-        schedule.addStartTime(Integer.parseInt(request.queryParams("startHour")),
-                Integer.parseInt(request.queryParams("startMinutes")),
-                Schedule.TimePeriod.valueOf(request.queryParams("startPeriod")));
-        schedule.addEndTime(Integer.parseInt(request.queryParams("endHour")),
-                Integer.parseInt(request.queryParams("endMinutes")),
-                Schedule.TimePeriod.valueOf(request.queryParams("endPeriod")));
-        myClass.addSchedule(schedule);
-        myClass.addProfessorName(request.queryParams("professorName"));
-        AddClass addClasses = new AddClass(repository, receiver);
-        addClasses.addClass(myClass);
-        return converter.toJson(receiver);
+//        AddClass addClasses = new AddClass(repository, receiver);
+//        addClasses.addClass(classRequest);
+//
+//        ClassRequest classRequest = converter.fromJson(request.body(), ClassRequest.class);
+//        return converter.toJson(receiver);
+        return "";
     }
 }

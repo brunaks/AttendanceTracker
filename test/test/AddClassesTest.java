@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -24,110 +25,112 @@ public class AddClassesTest {
         addClasses = new AddClass(classRepository, receiver);
     }
 
+    public ClassRequest givenClass(String className, String professorName, Schedule.Days day,
+                                   int startTimeHour, int startTimeMinutes, Schedule.TimePeriod startTimePeriod,
+                                   int endTimeHour, int endTimeMinutes, Schedule.TimePeriod endTimePeriod) {
+
+        ClassRequest classRequest = new ClassRequest();
+        classRequest.className = className;
+        classRequest.professsorName = professorName;
+
+        ScheduleRequest scheduleRequest = new ScheduleRequest();
+        scheduleRequest.startTimeHours = startTimeHour;
+        scheduleRequest.startTimeMinutes = startTimeMinutes;
+        scheduleRequest.startTimePeriod = startTimePeriod;
+
+        scheduleRequest.endTimeHours = endTimeHour;
+        scheduleRequest.endTimeMinutes = endTimeMinutes;
+        scheduleRequest.endTimePeriod = endTimePeriod;
+
+        scheduleRequest.day = day;
+        classRequest.schedules = new ScheduleRequest[] { scheduleRequest };
+        return classRequest;
+    }
+
     @Test
-    public void addOneClass() {
+    public void addOneClassFromRequest() {
 
-        Schedule schedule = new Schedule();
-        schedule.addDay(Schedule.Days.MONDAY);
-        schedule.addStartTime(7, 0, Schedule.TimePeriod.PM);
-        schedule.addEndTime(10, 30, Schedule.TimePeriod.PM);
-
-        Class myClass = new Class();
-        myClass.addName("Core.Class 1");
-        myClass.addSchedule(schedule);
-        myClass.addProfessorName("Professor");
-
-        addClasses.addClass(myClass);
+        ClassRequest classRequest = givenClass("Class 1", "Professor", Schedule.Days.MONDAY,
+                                                7, 0, Schedule.TimePeriod.PM,
+                                                10, 30, Schedule.TimePeriod.PM);
+        addClasses.addClassFromRequest(classRequest);
 
         ClassReader classReader = new ClassReader(classRepository);
         List<Class> classes = classReader.getAll();
+        Class actualClass = classes.get(0);
 
-        assertSameClass(myClass, classes.get(0));
+        Assert.assertEquals(classRequest.className, actualClass.getName());
+        Assert.assertEquals("19:00", actualClass.getSchedule().get(0).getStartTime().toString());
+        Assert.assertEquals("22:30", actualClass.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals(Schedule.Days.MONDAY, actualClass.getSchedule().get(0).getDay());
+        Assert.assertEquals(classRequest.professsorName, actualClass.getProfessorName());
         Assert.assertTrue(receiver.success);
     }
 
     @Test
-    public void addTwoClasses() {
+    public void addTwoClassesFromRequest() {
 
-        Schedule schedule = new Schedule();
-        schedule.addDay(Schedule.Days.MONDAY);
-        schedule.addStartTime(7, 0, Schedule.TimePeriod.PM);
-        schedule.addEndTime(10, 30, Schedule.TimePeriod.PM);
+        ClassRequest classRequest = givenClass("Class 1", "Professor", Schedule.Days.MONDAY,
+                7, 0, Schedule.TimePeriod.PM,
+                10, 30, Schedule.TimePeriod.PM);
 
-        Class myClass = new Class();
-        myClass.addName("Core.Class 1");
-        myClass.addSchedule(schedule);
-        myClass.addProfessorName("Professor");
-
-        addClasses.addClass(myClass);
-
+        addClasses.addClassFromRequest(classRequest);
         Assert.assertTrue(receiver.success);
 
-        Schedule schedule2 = new Schedule();
-        schedule2.addDay(Schedule.Days.TUESDAY);
-        schedule2.addStartTime(7, 0, Schedule.TimePeriod.PM);
-        schedule2.addEndTime(10, 30, Schedule.TimePeriod.PM);
+        ClassRequest classRequest2 = givenClass("Class 1", "Professor", Schedule.Days.TUESDAY,
+                8, 0, Schedule.TimePeriod.PM,
+                10, 0, Schedule.TimePeriod.PM);
 
-        Class myClass2 = new Class();
-        myClass2.addName("Core.Class 1");
-        myClass2.addSchedule(schedule2);
-        myClass2.addProfessorName("Professor");
-
-        addClasses.addClass(myClass2);
-
+        addClasses.addClassFromRequest(classRequest2);
         Assert.assertTrue(receiver.success);
 
         ClassReader classReader = new ClassReader(classRepository);
         List<Class> classes = classReader.getAll();
 
-        assertSameClass(myClass, classes.get(0));
-        assertSameClass(myClass2, classes.get(1));
+        Assert.assertEquals(2, classes.size());
+        Class actualClass1 = classes.get(0);
+        Class actualClass2 = classes.get(1);
+
+        Assert.assertEquals(classRequest.className, actualClass1.getName());
+        Assert.assertEquals("19:00", actualClass1.getSchedule().get(0).getStartTime().toString());
+        Assert.assertEquals("22:30", actualClass1.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
+        Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
+
+        Assert.assertEquals(classRequest2.className, actualClass2.getName());
+        Assert.assertEquals("20:00", actualClass2.getSchedule().get(0).getStartTime().toString());
+        Assert.assertEquals("22:00", actualClass2.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals(Schedule.Days.TUESDAY, actualClass2.getSchedule().get(0).getDay());
+        Assert.assertEquals(classRequest.professsorName, actualClass2.getProfessorName());
     }
 
     @Test
-    public void cannotAddTwoClassesSameSchedule() {
+    public void addTwoClassesWithSameScheduleFromRequest() {
 
-        Schedule schedule = new Schedule();
-        schedule.addDay(Schedule.Days.MONDAY);
-        schedule.addStartTime(7, 0, Schedule.TimePeriod.PM);
-        schedule.addEndTime(10, 0, Schedule.TimePeriod.PM);
+        ClassRequest classRequest = givenClass("Class 1", "Professor", Schedule.Days.MONDAY,
+                7, 0, Schedule.TimePeriod.PM,
+                10, 30, Schedule.TimePeriod.PM);
 
-        Class myClass = new Class();
-        myClass.addName("Core.Class 1");
-        myClass.addSchedule(schedule);
-        myClass.addProfessorName("Professor");
-
-        addClasses.addClass(myClass);
-
+        addClasses.addClassFromRequest(classRequest);
         Assert.assertTrue(receiver.success);
 
-        Schedule schedule2 = new Schedule();
-        schedule2.addDay(Schedule.Days.MONDAY);
-        schedule2.addStartTime(7, 0, Schedule.TimePeriod.PM);
-        schedule2.addEndTime(10, 30, Schedule.TimePeriod.PM);
+        ClassRequest classRequest2 = givenClass("Class 1", "Professor", Schedule.Days.MONDAY,
+                7, 0, Schedule.TimePeriod.PM,
+                10, 30, Schedule.TimePeriod.PM);
 
-        Class myClass2 = new Class();
-        myClass2.addName("Core.Class 1");
-        myClass2.addSchedule(schedule);
-        myClass2.addProfessorName("Professor");
-
-        addClasses.addClass(myClass2);
-
+        addClasses.addClassFromRequest(classRequest2);
         Assert.assertFalse(receiver.success);
 
         ClassReader classReader = new ClassReader(classRepository);
         List<Class> classes = classReader.getAll();
 
         Assert.assertEquals(1, classes.size());
-        assertSameClass(myClass, classes.get(0));
-    }
+        Class actualClass1 = classes.get(0);
 
-    private void assertSameClass(Class expectedClass, Class actualClass) {
-        Assert.assertEquals(expectedClass.getName(), actualClass.getName());
-        Assert.assertEquals(expectedClass.getSchedule().get(0).getStartTime().toString(),
-                            actualClass.getSchedule().get(0).getStartTime().toString());
-        Assert.assertEquals(expectedClass.getSchedule().get(0).getEndTime().toString(),
-                            actualClass.getSchedule().get(0).getEndTime().toString());
-        Assert.assertEquals(expectedClass.getProfessorName(), actualClass.getProfessorName());
+        Assert.assertEquals(classRequest.className, actualClass1.getName());
+        Assert.assertEquals("19:00", actualClass1.getSchedule().get(0).getStartTime().toString());
+        Assert.assertEquals("22:30", actualClass1.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
+        Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
     }
 }

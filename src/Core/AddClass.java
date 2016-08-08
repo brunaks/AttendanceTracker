@@ -15,7 +15,7 @@ public class AddClass {
         this.receiver = receiver;
     }
 
-    public void addClass(Class myClass) {
+    private void addClass(Class myClass) {
         ClassReader reader = new ClassReader(repository);
         List<Class> classes = reader.getAll();
 
@@ -32,5 +32,17 @@ public class AddClass {
 
         repository.add(myClass);
         receiver.registrationSuccessful();
+    }
+
+    public void addClassFromRequest(ClassRequest classRequest) {
+        Class aClass = new Class();
+        aClass.addName(classRequest.className);
+        aClass.addProfessorName(classRequest.professsorName);
+        Schedule schedule = new Schedule();
+        schedule.addStartTime(classRequest.schedules[0].startTimeHours, classRequest.schedules[0].startTimeMinutes, classRequest.schedules[0].startTimePeriod);
+        schedule.addEndTime(classRequest.schedules[0].endTimeHours, classRequest.schedules[0].endTimeMinutes, classRequest.schedules[0].endTimePeriod);
+        schedule.addDay(classRequest.schedules[0].day);
+        aClass.addSchedule(schedule);
+        addClass(aClass);
     }
 }
