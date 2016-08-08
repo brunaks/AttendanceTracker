@@ -1,4 +1,6 @@
 import java.awt.datatransfer.DataFlavor;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.
@@ -6,24 +8,30 @@ import java.awt.datatransfer.DataFlavor;
 public class Class {
 
     private String name;
-
-    public Class() {
-
-    }
+    private List<Schedule> schedule = new ArrayList<Schedule>();
+    private String professorName;
 
     public void addName(String name) {
-
+        this.name = name;
     }
 
     public void addSchedule(Schedule schedule) {
-
+        this.schedule.add(schedule);
     }
 
-    public void addProfessor(String professorName) {
-
+    public void addProfessorName(String professorName) {
+        this.professorName = professorName;
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public String getProfessorName() {
+        return professorName;
     }
 }

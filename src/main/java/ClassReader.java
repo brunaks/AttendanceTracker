@@ -5,9 +5,13 @@ import java.util.List;
  */
 public class ClassReader {
 
-    private List<Class> classes;
+    private ClassRepository repository;
+
+    public ClassReader(ClassRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Class> getAll() {
-        return classes;
+        return repository.getAll();
     }
 }

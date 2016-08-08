@@ -11,7 +11,10 @@ public class AddClassesTest {
     @Test
     public void add_one_class() {
 
-        AddClasses addClasses = new AddClasses();
+        FakeAddClassesReceiver receiver = new FakeAddClassesReceiver();
+        ClassRepository classRepository = new ClassRepositoryInMemory();
+
+        AddClasses addClasses = new AddClasses(classRepository, receiver);
 
         Schedule schedule = new Schedule();
         schedule.addDay(Schedule.Days.MONDAY);
@@ -21,13 +24,19 @@ public class AddClassesTest {
         Class myClass = new Class();
         myClass.addName("Class 1");
         myClass.addSchedule(schedule);
-        myClass.addProfessor("Professor");
+        myClass.addProfessorName("Professor");
 
         addClasses.addClass(myClass);
 
-        ClassReader classReader = new ClassReader();
+        ClassReader classReader = new ClassReader(classRepository);
         List<Class> classes = classReader.getAll();
 
-        Assert.assertEquals(myClass.getName(), classes.get(1).getName());
+        Assert.assertEquals(myClass.getName(), classes.get(0).getName());
+        Assert.assertEquals(myClass.getSchedule().get(0).getStartTime().time, classes.get(0).getSchedule().get(0).getStartTime().time);
+        Assert.assertEquals(myClass.getSchedule().get(0).getStartTime().period, classes.get(0).getSchedule().get(0).getStartTime().period);
+        Assert.assertEquals(myClass.getSchedule().get(0).getEndTime().time, classes.get(0).getSchedule().get(0).getEndTime().time);
+        Assert.assertEquals(myClass.getSchedule().get(0).getEndTime().period, classes.get(0).getSchedule().get(0).getEndTime().period);
+        Assert.assertEquals(myClass.getProfessorName(), classes.get(0).getProfessorName());
+        Assert.assertTrue(receiver.success);
     }
 }
