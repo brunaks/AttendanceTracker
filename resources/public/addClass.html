@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Class</title>
 
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"
+              integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+              crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -20,8 +22,14 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
+    <script src="moment.js"></script>
+    <script src="moment-with-locales.js"></script>
+    <script type="text/javascript" src="bootstrap-transition.js"></script>
+    <script type="text/javascript" src="bootstrap-collapse.js"></script>
+    <script src="bootstrap-datetimepicker.min.js"></script>
+    <script src="bootstrap-clockpicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" type="text/css" href="bootstrap-clockpicker.min.css">
-    <link rel="stylesheet" type="text/css" href="bootstrap-clockpicker.min.js">
 
 </head>
 <body>
@@ -30,15 +38,19 @@
         <input type="text" class="form-control" placeholder="Class Name" id="className">
         <input type="text" class="form-control" placeholder="Professor Name" id="professorName">
 
-        <div class="input-group clockpicker">
-            <input type="text" class="form-control" value="09:30" id="startTime">
-            <span class="input-group-addon">
-            <span class="glyphicon glyphicon-time"></span>
-            </span>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker3'>
+                <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+            </div>
         </div>
         <script type="text/javascript">
-            jQuery(function($) {
-                $('.clockpicker').clockpicker();
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
             });
         </script>
 
@@ -51,15 +63,19 @@
             </label>
         </div>
 
-        <div class="input-group clockpicker">
-            <input type="text" class="form-control" value="09:30" id="endTime">
-            <span class="input-group-addon">
-            <span class="glyphicon glyphicon-time"></span>
-            </span>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker4'>
+                <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+            </div>
         </div>
         <script type="text/javascript">
-            jQuery(function($) {
-                $('.clockpicker').clockpicker();
+            $(function () {
+                $('#datetimepicker4').datetimepicker({
+                    format: 'LT'
+                });
             });
         </script>
 
