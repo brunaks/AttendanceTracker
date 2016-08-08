@@ -1,17 +1,20 @@
+import java.time.LocalTime;
+import java.util.List;
+
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.
  */
 public class Schedule {
 
-    private Time startTime = new Time();
-    private Time endTime = new Time();
+    private LocalTime startTime;
+    private LocalTime endTime;
     private Days day;
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
@@ -27,18 +30,21 @@ public class Schedule {
         this.day = day;
     }
 
-    public void addStartTime(Double time, TimePeriod period) {
-        this.startTime.time = time;
-        this.startTime.period = period;
+    public void addStartTime(int hour, int minutes, TimePeriod period) {
+        if (period == TimePeriod.AM)
+            startTime = LocalTime.of(hour, minutes);
+        else
+            startTime = LocalTime.of(hour+12, minutes);
     }
 
-    public void addEndTime(Double time, TimePeriod period) {
-        this.endTime.time = time;
-        this.endTime.period = period;
+    public void addEndTime(int hour, int minutes, TimePeriod period) {
+        if (period == TimePeriod.AM)
+            endTime = LocalTime.of(hour, minutes);
+        else
+            endTime = LocalTime.of(hour+12, minutes);
     }
 
-    public class Time {
-        public Double time;
-        public TimePeriod period;
+    public boolean isOverlappedWith(Schedule schedule) {
+        return this.day == schedule.day && !this.startTime.isAfter(schedule.getEndTime()) && !schedule.startTime.isAfter(this.getEndTime());
     }
 }

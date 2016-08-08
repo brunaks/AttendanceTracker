@@ -3,4 +3,5 @@
  */
 public interface AddClassesReceiver {
     void registrationSuccessful();
+    void registrationFailed();
 }

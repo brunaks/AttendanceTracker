@@ -8,4 +8,8 @@ public class FakeAddClassesReceiver implements AddClassesReceiver {
     public void registrationSuccessful() {
         success = true;
     }
+
+    public void registrationFailed() {
+        success = false;
+    }
 }
