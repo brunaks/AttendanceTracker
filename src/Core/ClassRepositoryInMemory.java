@@ -1,3 +1,5 @@
+package Core;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,16 +8,16 @@ import java.util.List;
  */
 public class ClassRepositoryInMemory implements ClassRepository {
 
-    private List<Class> classes = new ArrayList<Class>();
+    private List<java.lang.Class> classes = new ArrayList<java.lang.Class>();
 
     public ClassRepositoryInMemory() {
     }
 
-    public void add(Class myClass) {
+    public void add(java.lang.Class myClass) {
         this.classes.add(myClass);
     }
 
-    public List<Class> getAll() {
+    public List<java.lang.Class> getAll() {
         return classes;
     }
 }

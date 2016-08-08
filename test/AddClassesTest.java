@@ -1,3 +1,7 @@
+package test;
+
+import Core.*;
+import Core.Class;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +33,7 @@ public class AddClassesTest {
         schedule.addEndTime(10, 30, Schedule.TimePeriod.PM);
 
         Class myClass = new Class();
-        myClass.addName("Class 1");
+        myClass.addName("Core.Class 1");
         myClass.addSchedule(schedule);
         myClass.addProfessorName("Professor");
 
@@ -51,7 +55,7 @@ public class AddClassesTest {
         schedule.addEndTime(10, 30, Schedule.TimePeriod.PM);
 
         Class myClass = new Class();
-        myClass.addName("Class 1");
+        myClass.addName("Core.Class 1");
         myClass.addSchedule(schedule);
         myClass.addProfessorName("Professor");
 
@@ -65,7 +69,7 @@ public class AddClassesTest {
         schedule2.addEndTime(10, 30, Schedule.TimePeriod.PM);
 
         Class myClass2 = new Class();
-        myClass2.addName("Class 1");
+        myClass2.addName("Core.Class 1");
         myClass2.addSchedule(schedule2);
         myClass2.addProfessorName("Professor");
 
@@ -89,7 +93,7 @@ public class AddClassesTest {
         schedule.addEndTime(10, 0, Schedule.TimePeriod.PM);
 
         Class myClass = new Class();
-        myClass.addName("Class 1");
+        myClass.addName("Core.Class 1");
         myClass.addSchedule(schedule);
         myClass.addProfessorName("Professor");
 
@@ -103,7 +107,7 @@ public class AddClassesTest {
         schedule2.addEndTime(10, 30, Schedule.TimePeriod.PM);
 
         Class myClass2 = new Class();
-        myClass2.addName("Class 1");
+        myClass2.addName("Core.Class 1");
         myClass2.addSchedule(schedule);
         myClass2.addProfessorName("Professor");
 

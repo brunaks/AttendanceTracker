@@ -1,5 +1,6 @@
+package Core;
+
 import java.time.LocalTime;
-import java.util.List;
 
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.
