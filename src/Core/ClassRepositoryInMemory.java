@@ -8,16 +8,16 @@ import java.util.List;
  */
 public class ClassRepositoryInMemory implements ClassRepository {
 
-    private List<java.lang.Class> classes = new ArrayList<java.lang.Class>();
+    private List<Class> classes = new ArrayList<Class>();
 
     public ClassRepositoryInMemory() {
     }
 
-    public void add(java.lang.Class myClass) {
+    public void add(Class myClass) {
         this.classes.add(myClass);
     }
 
-    public List<java.lang.Class> getAll() {
+    public List<Class> getAll() {
         return classes;
     }
 }

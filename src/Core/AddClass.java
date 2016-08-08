@@ -5,12 +5,12 @@ import java.util.List;
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.
  */
-public class AddClasses {
+public class AddClass {
 
-    private final AddClassesReceiver receiver;
+    private final AddClassReceiver receiver;
     private final ClassRepository repository;
 
-    public AddClasses(ClassRepository repository, AddClassesReceiver receiver) {
+    public AddClass(ClassRepository repository, AddClassReceiver receiver) {
         this.repository = repository;
         this.receiver = receiver;
     }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Class</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-clockpicker.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-clockpicker.min.js">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Class Name" id="className">
+        <input type="text" class="form-control" placeholder="Professor Name" id="professorName">
+
+        <div class="input-group clockpicker">
+            <input type="text" class="form-control" value="09:30" id="startTime">
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('.clockpicker').clockpicker();
+            });
+        </script>
+
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default">
+                <input type="radio" name="startPeriod" id="startAM" value="AM">AM
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="startPeriod" id="startPM" value="AM">PM
+            </label>
+        </div>
+
+        <div class="input-group clockpicker">
+            <input type="text" class="form-control" value="09:30" id="endTime">
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('.clockpicker').clockpicker();
+            });
+        </script>
+
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default">
+                <input type="radio" name="endPeriod" id="endAM" value="AM">AM
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" name="endPeriod" value="endPM">PM
+            </label>
+        </div>
+    </div>
+</div>
+</body>
+</html>

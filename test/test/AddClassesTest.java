@@ -15,13 +15,13 @@ public class AddClassesTest {
 
     private FakeAddClassesReceiver receiver;
     private ClassRepository classRepository;
-    private AddClasses addClasses;
+    private AddClass addClasses;
 
     @Before
     public void setUp() {
         receiver = new FakeAddClassesReceiver();
         classRepository = new ClassRepositoryInMemory();
-        addClasses = new AddClasses(classRepository, receiver);
+        addClasses = new AddClass(classRepository, receiver);
     }
 
     @Test

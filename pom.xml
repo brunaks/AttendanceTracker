@@ -25,6 +25,11 @@
             <artifactId>gson</artifactId>
             <version>2.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3</version>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
@@ -59,7 +64,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>main.Main</mainClass>
+                            <mainClass>main.MainRoute</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
