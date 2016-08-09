@@ -60,8 +60,8 @@ public class AddClassesTest {
         Class actualClass = classes.get(0);
 
         Assert.assertEquals(classRequest.className, actualClass.getName());
-        Assert.assertEquals("19:00", actualClass.getSchedule().get(0).getStartTime().toString());
-        Assert.assertEquals("22:30", actualClass.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals("07:00 PM", actualClass.getSchedule().get(0).getStartTime());
+        Assert.assertEquals("10:30 PM", actualClass.getSchedule().get(0).getEndTime());
         Assert.assertEquals(Schedule.Days.MONDAY, actualClass.getSchedule().get(0).getDay());
         Assert.assertEquals(classRequest.professsorName, actualClass.getProfessorName());
         Assert.assertTrue(receiver.success);
@@ -92,14 +92,14 @@ public class AddClassesTest {
         Class actualClass2 = classes.get(1);
 
         Assert.assertEquals(classRequest.className, actualClass1.getName());
-        Assert.assertEquals("19:00", actualClass1.getSchedule().get(0).getStartTime().toString());
-        Assert.assertEquals("22:30", actualClass1.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals("07:00 PM", actualClass1.getSchedule().get(0).getStartTime());
+        Assert.assertEquals("10:30 PM", actualClass1.getSchedule().get(0).getEndTime());
         Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
         Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
 
         Assert.assertEquals(classRequest2.className, actualClass2.getName());
-        Assert.assertEquals("20:00", actualClass2.getSchedule().get(0).getStartTime().toString());
-        Assert.assertEquals("22:00", actualClass2.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals("08:00", actualClass2.getSchedule().get(0).getStartTime());
+        Assert.assertEquals("10:00", actualClass2.getSchedule().get(0).getEndTime());
         Assert.assertEquals(Schedule.Days.TUESDAY, actualClass2.getSchedule().get(0).getDay());
         Assert.assertEquals(classRequest.professsorName, actualClass2.getProfessorName());
     }
@@ -128,8 +128,8 @@ public class AddClassesTest {
         Class actualClass1 = classes.get(0);
 
         Assert.assertEquals(classRequest.className, actualClass1.getName());
-        Assert.assertEquals("19:00", actualClass1.getSchedule().get(0).getStartTime().toString());
-        Assert.assertEquals("22:30", actualClass1.getSchedule().get(0).getEndTime().toString());
+        Assert.assertEquals("07:00", actualClass1.getSchedule().get(0).getStartTime());
+        Assert.assertEquals("10:30", actualClass1.getSchedule().get(0).getEndTime());
         Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
         Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
     }

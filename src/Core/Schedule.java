@@ -9,13 +9,19 @@ public class Schedule {
 
     private LocalTime startTime;
     private LocalTime endTime;
+    private int startHours;
+    private int startMinutes;
+    private TimePeriod startPeriod;
+    private int endHours;
+    private int endMinutes;
+    private TimePeriod endPeriod;
     private Days day;
 
-    public LocalTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public LocalTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
@@ -50,6 +56,9 @@ public class Schedule {
     }
 
     public boolean isOverlappedWith(Schedule schedule) {
-        return this.day == schedule.day && !this.startTime.isAfter(schedule.getEndTime()) && !schedule.startTime.isAfter(this.getEndTime());
+        LocalTime startTime = LocalTime.of(this.startHours, this.startMinutes);
+        LocalTime endTime = LocalTime.of(this.endHours, this.endMinutes);
+
+        return this.day == schedule.day && !startTime.isAfter(schedule.endTime) && !schedule.startTime.isAfter(this.endTime);
     }
 }
