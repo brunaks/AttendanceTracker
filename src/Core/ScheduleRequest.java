@@ -7,11 +7,11 @@ public class ScheduleRequest {
 
     public int startTimeHours;
     public int startTimeMinutes;
-    public Schedule.TimePeriod startTimePeriod;
+    public Time.TimePeriod startTimePeriod;
 
     public int endTimeHours;
     public int endTimeMinutes;
-    public Schedule.TimePeriod endTimePeriod;
+    public Time.TimePeriod endTimePeriod;
 
     public Schedule.Days day;
 }
