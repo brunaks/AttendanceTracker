@@ -1,6 +1,7 @@
 package Core;
 
 import com.google.gson.Gson;
+import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -21,11 +22,28 @@ public class AddClassRoute implements Route {
 
     @Override
     public Object handle(Request request, Response response) throws Exception {
-//        AddClass addClasses = new AddClass(repository, receiver);
-//        addClasses.addClass(classRequest);
-//
-//        ClassRequest classRequest = converter.fromJson(request.body(), ClassRequest.class);
-//        return converter.toJson(receiver);
-        return "";
+        AddClass addClasses = new AddClass(repository, receiver);
+        JSONObject jsonRequest = new JSONObject(request.body());
+        ClassRequest classRequest = convertRequest(jsonRequest);
+        addClasses.addClassFromRequest(classRequest);
+        return converter.toJson(receiver);
+    }
+
+    private ClassRequest convertRequest(JSONObject request) {
+/*        ClassRequest classRequest = new ClassRequest();
+        classRequest.className = request.getString("className");
+        classRequest.professsorName = request.getString("professorName");
+        ScheduleRequest scheduleRequest = new ScheduleRequest();
+        String startTime = request.getString("startTime");
+        String endTime = request.getString("endTime");
+        String[] startTimeAfterSplit = startTime.split(":");
+
+        String startTimeHours = startTimeAfterSplit[0];
+        String startTimeMinutes = startTimeAfterSplit[1].substring(0, 2);
+        String startTimePeriod = startTimeAfterSplit
+
+        scheduleRequest.startTimeHours = request.get("startTime").toString().split(":")[0];
+        classRequest.schedules[0] = new ScheduleRequest().;*/
+        return null;
     }
 }

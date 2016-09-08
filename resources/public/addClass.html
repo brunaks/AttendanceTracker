@@ -36,12 +36,12 @@
 <body>
 <div class="container">
     <div class="well">
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="form">
             <div class="form-group">
                 <label class="control-label col-sm-2 col-sm-offset-2" for="className">Class Name</label>
 
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="Class Name" id="className" required>
+                    <input type="text" class="form-control" placeholder="Class Name" id="className" name="className" required>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                 <label class="control-label col-sm-2 col-sm-offset-2" for="professorName">Professor Name</label>
 
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName" required>
+                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName" name="professorName" required>
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
 
                 <div class="col-sm-2">
                     <div class="input-group date datetimepicker">
-                    <input type="text" class="form-control" id="startTime" required/>
+                    <input type="text" class="form-control" id="startTime" name="startTime" required/>
 
                     <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 
@@ -71,7 +71,7 @@
 
                 <div class="col-sm-2">
                     <div class="input-group date datetimepicker">
-                    <input type="text" class="form-control" id="endTime" required/>
+                    <input type="text" class="form-control" id="endTime" name="endTime" required/>
 
                     <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 
@@ -80,7 +80,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary col-sm-offset-8 col-sm-1" type="submit">Save</button>
+                <button class="btn btn-primary col-sm-offset-8 col-sm-1" type="submit" onclick="add_class()">Save</button>
             </div>
         </form>
     </div>
