@@ -41,7 +41,7 @@
                 <label class="control-label col-sm-2 col-sm-offset-2" for="className">Class Name</label>
 
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="Class Name" id="className">
+                    <input type="text" class="form-control" placeholder="Class Name" id="className" required>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                 <label class="control-label col-sm-2 col-sm-offset-2" for="professorName">Professor Name</label>
 
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName">
+                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName" required>
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
 
                 <div class="col-sm-2">
                     <div class="input-group date datetimepicker">
-                    <input type="text" class="form-control" id="startTime"/>
+                    <input type="text" class="form-control" id="startTime" required/>
 
                     <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 
@@ -71,12 +71,16 @@
 
                 <div class="col-sm-2">
                     <div class="input-group date datetimepicker">
-                    <input type="text" class="form-control" id="endTime"/>
+                    <input type="text" class="form-control" id="endTime" required/>
 
                     <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 
                     </div>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary col-sm-offset-8 col-sm-1" type="submit">Save</button>
             </div>
         </form>
     </div>
