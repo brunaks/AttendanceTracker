@@ -36,55 +36,49 @@
 <body>
 <div class="container">
     <div class="well">
-        <div class="row">
-            <label class="control-label col-sm-2 col-sm-offset-2" for="className">Class Name</label>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-2" for="className">Class Name</label>
 
-            <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Class Name" id="className">
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="Class Name" id="className">
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <p></p>
-        </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-2" for="professorName">Professor Name</label>
 
-        <div class="row">
-            <label class="control-label col-sm-2 col-sm-offset-2" for="professorName">Professor Name</label>
-
-            <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Professor Name" id="professorName">
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName">
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <p></p>
-        </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-2" for="startTime">Start Time</label>
 
-        <div class="row">
-            <label class="control-label col-sm-2 col-sm-offset-2" for="startTime">Start Time</label>
+                <div class="col-sm-2">
+                    <div class="input-group date datetimepicker">
+                    <input type="text" class="form-control" id="startTime"/>
 
-            <div class='input-group date datetimepicker col-sm-2'>
-                <input type='text' class="form-control" id="startTime"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
-                    </span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <p></p>
-        </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-2" for="endTime">End Time</label>
 
-        <div class="row">
-            <label class="control-label col-sm-2 col-sm-offset-2" for="endTime">End Time</label>
+                <div class="col-sm-2">
+                    <div class="input-group date datetimepicker">
+                    <input type="text" class="form-control" id="endTime"/>
 
-            <div class='input-group date datetimepicker col-sm-2'>
-                <input type='text' class="form-control" id="endTime"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
-                    </span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>
