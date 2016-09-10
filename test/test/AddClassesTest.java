@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +43,8 @@ public class AddClassesTest {
         scheduleRequest.endTimePeriod = endTimePeriod;
 
         scheduleRequest.day = day;
-        classRequest.schedules = new ScheduleRequest[]{scheduleRequest};
+        classRequest.schedules = new ArrayList<>();
+        classRequest.schedules.add(scheduleRequest);
         return classRequest;
     }
 

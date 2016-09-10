@@ -10,5 +10,5 @@ public class ClassRequest {
     public String className;
     public String professsorName;
 
-    public ScheduleRequest[] schedules;
+    public List<ScheduleRequest> schedules;
 }

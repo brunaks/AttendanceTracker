@@ -46,9 +46,9 @@ public class AddClass {
         aClass.addName(classRequest.className);
         aClass.addProfessorName(classRequest.professsorName);
         Schedule schedule = new Schedule();
-        schedule.addStartTime(classRequest.schedules[0].startTimeHours, classRequest.schedules[0].startTimeMinutes, classRequest.schedules[0].startTimePeriod);
-        schedule.addEndTime(classRequest.schedules[0].endTimeHours, classRequest.schedules[0].endTimeMinutes, classRequest.schedules[0].endTimePeriod);
-        schedule.addDay(classRequest.schedules[0].day);
+        schedule.addStartTime(classRequest.schedules.get(0).startTimeHours, classRequest.schedules.get(0).startTimeMinutes, classRequest.schedules.get(0).startTimePeriod);
+        schedule.addEndTime(classRequest.schedules.get(0).endTimeHours, classRequest.schedules.get(0).endTimeMinutes, classRequest.schedules.get(0).endTimePeriod);
+        schedule.addDay(classRequest.schedules.get(0).day);
         aClass.addSchedule(schedule);
         addClass(aClass);
     }

@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+import java.util.ArrayList;
+
 /**
  * Created by Bruna Koch Schmitt on 08/08/2016.
  */
@@ -39,14 +41,15 @@ public class AddClassRoute implements Route {
         String endTime = request.getString("endTime");
 
         scheduleRequest.startTimeHours = Integer.parseInt(startTime.substring(0, 2));
-        scheduleRequest.startTimeMinutes = Integer.parseInt(startTime.substring(4, 6));
-        scheduleRequest.startTimePeriod = Time.TimePeriod.valueOf(startTime.substring(7, 9));
+        scheduleRequest.startTimeMinutes = Integer.parseInt(startTime.substring(3, 5));
+        scheduleRequest.startTimePeriod = Time.TimePeriod.valueOf(startTime.substring(6, 8));
 
         scheduleRequest.endTimeHours = Integer.parseInt(endTime.substring(0, 2));
-        scheduleRequest.endTimeMinutes = Integer.parseInt(endTime.substring(4, 6));
-        scheduleRequest.endTimePeriod = Time.TimePeriod.valueOf(endTime.substring(7, 9));
+        scheduleRequest.endTimeMinutes = Integer.parseInt(endTime.substring(3, 5));
+        scheduleRequest.endTimePeriod = Time.TimePeriod.valueOf(endTime.substring(6, 8));
 
-        classRequest.schedules[0] = scheduleRequest;
+        classRequest.schedules = new ArrayList<>();
+        classRequest.schedules.add(scheduleRequest);
         return classRequest;
     }
 }

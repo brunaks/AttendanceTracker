@@ -37,5 +37,5 @@ function add_class() {
         }
     );
 
-    request.send(JSON.stringify(formData));
+    request.send(formData);
 }
