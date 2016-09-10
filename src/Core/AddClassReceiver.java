@@ -6,4 +6,5 @@ package Core;
 public interface AddClassReceiver {
     void registrationSuccessful();
     void registrationFailed();
+    void endTimeIsBeforeStartTime();
 }

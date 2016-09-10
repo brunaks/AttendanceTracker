@@ -42,7 +42,7 @@ public class AddClassesTest {
         scheduleRequest.endTimePeriod = endTimePeriod;
 
         scheduleRequest.day = day;
-        classRequest.schedules = new ScheduleRequest[] { scheduleRequest };
+        classRequest.schedules = new ScheduleRequest[]{scheduleRequest};
         return classRequest;
     }
 
@@ -50,8 +50,8 @@ public class AddClassesTest {
     public void addOneClassFromRequest() {
 
         ClassRequest classRequest = givenClass("Class 1", "Professor", Schedule.Days.MONDAY,
-                                                7, 0, Time.TimePeriod.PM,
-                                                10, 30, Time.TimePeriod.PM);
+                7, 0, Time.TimePeriod.PM,
+                10, 30, Time.TimePeriod.PM);
         addClasses.addClassFromRequest(classRequest);
 
         ClassReader classReader = new ClassReader(classRepository);
@@ -132,4 +132,19 @@ public class AddClassesTest {
         Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
         Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
     }
+
+    @Test
+    public void onlyAddClassWithValidSchedule() {
+        ClassRequest classRequest = givenClass("Class 1", "Professor", Schedule.Days.MONDAY,
+                10, 31, Time.TimePeriod.PM,
+                10, 30, Time.TimePeriod.PM);
+        addClasses.addClassFromRequest(classRequest);
+
+        ClassReader classReader = new ClassReader(classRepository);
+        List<Class> classes = classReader.getAll();
+
+        Assert.assertEquals(0, classes.size());
+        Assert.assertTrue(receiver.endTimeBeforeStartTime);
+    }
 }
+

@@ -19,6 +19,13 @@ public class AddClass {
         ClassReader reader = new ClassReader(repository);
         List<Class> classes = reader.getAll();
 
+        for (Schedule schedule : myClass.getSchedule()) {
+            if (schedule.endTimeIsBeforeStartTime()) {
+                receiver.endTimeIsBeforeStartTime();
+                return;
+            }
+        }
+
         for (Class oneClass : classes) {
             for (Schedule scheduleAlreadyAdded : oneClass.getSchedule()) {
                 for (Schedule schedule : myClass.getSchedule()) {

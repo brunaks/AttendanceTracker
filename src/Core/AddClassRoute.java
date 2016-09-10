@@ -30,20 +30,23 @@ public class AddClassRoute implements Route {
     }
 
     private ClassRequest convertRequest(JSONObject request) {
-/*        ClassRequest classRequest = new ClassRequest();
+        ClassRequest classRequest = new ClassRequest();
         classRequest.className = request.getString("className");
         classRequest.professsorName = request.getString("professorName");
+
         ScheduleRequest scheduleRequest = new ScheduleRequest();
         String startTime = request.getString("startTime");
         String endTime = request.getString("endTime");
-        String[] startTimeAfterSplit = startTime.split(":");
 
-        String startTimeHours = startTimeAfterSplit[0];
-        String startTimeMinutes = startTimeAfterSplit[1].substring(0, 2);
-        String startTimePeriod = startTimeAfterSplit
+        scheduleRequest.startTimeHours = Integer.parseInt(startTime.substring(0, 2));
+        scheduleRequest.startTimeMinutes = Integer.parseInt(startTime.substring(4, 6));
+        scheduleRequest.startTimePeriod = Time.TimePeriod.valueOf(startTime.substring(7, 9));
 
-        scheduleRequest.startTimeHours = request.get("startTime").toString().split(":")[0];
-        classRequest.schedules[0] = new ScheduleRequest().;*/
-        return null;
+        scheduleRequest.endTimeHours = Integer.parseInt(endTime.substring(0, 2));
+        scheduleRequest.endTimeMinutes = Integer.parseInt(endTime.substring(4, 6));
+        scheduleRequest.endTimePeriod = Time.TimePeriod.valueOf(endTime.substring(7, 9));
+
+        classRequest.schedules[0] = scheduleRequest;
+        return classRequest;
     }
 }

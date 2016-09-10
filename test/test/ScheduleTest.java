@@ -5,8 +5,6 @@ import Core.Time;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalTime;
-
 /**
  * Created by I848075 on 08/08/2016.
  */
@@ -29,6 +27,24 @@ public class ScheduleTest {
         Assert.assertEquals("10:30 AM", schedule.getStartTime());
         schedule.addEndTime(11, 30, Time.TimePeriod.AM);
         Assert.assertEquals("11:30 AM", schedule.getEndTime());
+    }
+
+    @Test
+    public void endTimeShouldBeAfterStartTime() {
+        Schedule schedule = new Schedule();
+        schedule.addStartTime(10, 30, Time.TimePeriod.AM);
+        schedule.addEndTime(10, 31, Time.TimePeriod.AM);
+
+        Assert.assertFalse(schedule.endTimeIsBeforeStartTime());
+    }
+
+    @Test
+    public void endTimeisBeforeStartTime_scheduleNotValid() {
+        Schedule schedule = new Schedule();
+        schedule.addStartTime(10, 31, Time.TimePeriod.AM);
+        schedule.addEndTime(10, 30, Time.TimePeriod.AM);
+
+        Assert.assertTrue(schedule.endTimeIsBeforeStartTime());
     }
 
     @Test

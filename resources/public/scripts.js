@@ -16,6 +16,7 @@ function add_class() {
     };
 
     request.open("POST", "addClass", true);
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
     var paddedStartTime = document.getElementById("startTime").value;
     if (paddedStartTime.length < 8) {

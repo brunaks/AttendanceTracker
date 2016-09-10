@@ -6,6 +6,7 @@ package Core;
 public class FakeAddClassesReceiver implements AddClassReceiver {
 
     public boolean success;
+    public boolean endTimeBeforeStartTime;
 
     public void registrationSuccessful() {
         success = true;
@@ -13,5 +14,9 @@ public class FakeAddClassesReceiver implements AddClassReceiver {
 
     public void registrationFailed() {
         success = false;
+    }
+
+    public void endTimeIsBeforeStartTime() {
+        endTimeBeforeStartTime = true;
     }
 }

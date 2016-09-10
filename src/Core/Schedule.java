@@ -24,6 +24,10 @@ public class Schedule {
         return day;
     }
 
+    public boolean endTimeIsBeforeStartTime() {
+        return startTime.isAfter(endTime);
+    }
+
     public enum Days {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
