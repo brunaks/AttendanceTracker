@@ -1,9 +1,6 @@
 package main;
 
-import Core.AddClassRoute;
-import Core.AddClassReceiver;
-import Core.ClassRepositoryInMemory;
-import Core.FakeAddClassesReceiver;
+import Core.*;
 import spark.Spark;
 
 /**
@@ -16,9 +13,10 @@ public class MainRoute {
         Spark.port(Integer.parseInt(System.getenv("PORT")));
         Spark.externalStaticFileLocation("resources/public");
 
-        ClassRepositoryInMemory classRepositoryInMemory = new ClassRepositoryInMemory();
+        //ClassRepositoryInMemory classRepositoryInMemory = new ClassRepositoryInMemory();
+        PostgresqlClassRepository classRepository = new PostgresqlClassRepository();
         AddClassReceiver addClassesReceiver = new FakeAddClassesReceiver();
 
-        Spark.post("/addClass", new AddClassRoute(classRepositoryInMemory, addClassesReceiver));
+        Spark.post("/addClass", new AddClassRoute(classRepository, addClassesReceiver));
     }
 }

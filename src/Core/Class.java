@@ -8,11 +8,12 @@ import java.util.List;
  */
 public class Class {
 
+    private String id;
     private String name;
     private List<Schedule> schedule = new ArrayList<Schedule>();
     private String professorName;
 
-    public void addName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -20,7 +21,7 @@ public class Class {
         this.schedule.add(schedule);
     }
 
-    public void addProfessorName(String professorName) {
+    public void setProfessorName(String professorName) {
         this.professorName = professorName;
     }
 
@@ -34,5 +35,13 @@ public class Class {
 
     public String getProfessorName() {
         return professorName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

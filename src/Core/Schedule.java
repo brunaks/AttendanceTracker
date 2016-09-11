@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Schedule {
 
-    Time startTime;
-    Time endTime;
+    private Time startTime;
+    private Time endTime;
     private Days day;
 
     public String getStartTime() {

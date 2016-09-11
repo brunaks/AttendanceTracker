@@ -9,6 +9,5 @@ public class ClassRequest {
 
     public String className;
     public String professsorName;
-
     public List<ScheduleRequest> schedules;
 }
