@@ -14,8 +14,6 @@ import java.util.UUID;
  */
 public class PostgresqlClassRepository implements ClassRepository {
 
-    private Connection connection;
-
     @Override
     public void add(Class myClass) {
         getConnection();
@@ -32,7 +30,7 @@ public class PostgresqlClassRepository implements ClassRepository {
     private void addSchedule(String scheduleId, Class myClass) {
         String sql = "insert into schedule (id, start_time, end_time) values (?,?,?)";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = getConnection().prepareStatement(sql);
             stmt.setString(1, scheduleId);
             stmt.setString(2, myClass.getSchedule().get(0).getStartTime().toString());
             stmt.setString(3, myClass.getSchedule().get(0).getEndTime().toString());
@@ -46,7 +44,7 @@ public class PostgresqlClassRepository implements ClassRepository {
     private void addClass(String scheduleId, String classId, Class myClass) {
         String sql = "insert into class (id, name, professor_name, schedule_id) values (?,?,?,?)";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = getConnection().prepareStatement(sql);
             stmt.setString(1, classId);
             stmt.setString(2, myClass.getName());
             stmt.setString(3, myClass.getProfessorName());
@@ -58,15 +56,16 @@ public class PostgresqlClassRepository implements ClassRepository {
         }
     }
 
-    private void getConnection() {
+    private Connection getConnection() {
         ConnectionFactory connectionFactory = new PostgresqlConnectionFactory();
         try {
-            connection = connectionFactory.getConnection();
+            return connectionFactory.getConnection();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
@@ -74,7 +73,7 @@ public class PostgresqlClassRepository implements ClassRepository {
         String sql = "select * from class";
         ResultSet result;
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = getConnection().prepareStatement(sql);
             result = stmt.executeQuery();
             List<Class> classes = buildClassInfo(result);
             return buildSchedules(classes);
@@ -113,7 +112,7 @@ public class PostgresqlClassRepository implements ClassRepository {
     private ResultSet getSchedulesById(String classId) {
         String sql = "select * from schedule where class_id = ?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = getConnection().prepareStatement(sql);
             stmt.setString(1, classId);
             return stmt.executeQuery();
         } catch (SQLException e) {
