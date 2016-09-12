@@ -27,6 +27,7 @@ public class PostgresqlClassRepository implements ClassRepository {
         return UUID.randomUUID().toString();
     }
 
+    // Need to fix the insert
     private void addSchedule(String scheduleId, Class myClass) {
         String sql = "insert into schedule (id, start_time, end_time) values (?,?,?)";
         try {
