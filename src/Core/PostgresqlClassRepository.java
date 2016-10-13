@@ -19,8 +19,8 @@ public class PostgresqlClassRepository implements ClassRepository {
         getConnection();
         String scheduleId = generateID();
         String classId = generateID();
-        addSchedule(scheduleId, myClass);
-        addClass(scheduleId, classId, myClass);
+        addClass(classId, myClass);
+        addSchedule(scheduleId, myClass, classId);
     }
 
     private String generateID() {
@@ -28,13 +28,15 @@ public class PostgresqlClassRepository implements ClassRepository {
     }
 
     // Need to fix the insert
-    private void addSchedule(String scheduleId, Class myClass) {
-        String sql = "insert into schedule (id, start_time, end_time) values (?,?,?)";
+    private void addSchedule(String scheduleId, Class myClass, String classId) {
+        String sql = "insert into schedule (id, start_time, end_time, day, class_id) values (?,?,?,?,?)";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(sql);
             stmt.setString(1, scheduleId);
             stmt.setString(2, myClass.getSchedule().get(0).getStartTime().toString());
             stmt.setString(3, myClass.getSchedule().get(0).getEndTime().toString());
+            stmt.setString(4, myClass.getSchedule().get(0).getDay().getCode());
+            stmt.setString(5, classId);
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -42,14 +44,13 @@ public class PostgresqlClassRepository implements ClassRepository {
         }
     }
 
-    private void addClass(String scheduleId, String classId, Class myClass) {
-        String sql = "insert into class (id, name, professor_name, schedule_id) values (?,?,?,?)";
+    private void addClass(String classId, Class myClass) {
+        String sql = "insert into class (id, name, professor_name) values (?,?,?)";
         try {
             PreparedStatement stmt = getConnection().prepareStatement(sql);
             stmt.setString(1, classId);
             stmt.setString(2, myClass.getName());
             stmt.setString(3, myClass.getProfessorName());
-            stmt.setString(4, scheduleId);
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -99,7 +100,7 @@ public class PostgresqlClassRepository implements ClassRepository {
                     Time.TimePeriod endPeriod = Time.TimePeriod.valueOf(result.getString("end_time").substring(6));
                     schedule.addEndTime(Integer.parseInt(endHour), Integer.parseInt(endMinutes), endPeriod);
 
-                    schedule.addDay(Schedule.Days.valueOf(result.getString("day")));
+                    schedule.addDay(Schedule.Days.getFromCode(result.getString("day")));
 
                     aClass.addSchedule(schedule);
                 }

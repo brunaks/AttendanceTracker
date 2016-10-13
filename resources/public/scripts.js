@@ -28,12 +28,15 @@ function add_class() {
         paddedEndTime = '0' + paddedEndTime;
     }
 
+    var selectedDay = document.getElementById('day');
+
     var formData = JSON.stringify(
         {
             className: document.getElementById('className').value,
             professorName: document.getElementById('professorName').value,
             startTime: paddedStartTime,
-            endTime: paddedEndTime
+            endTime: paddedEndTime,
+            day: selectedDay.options[selectedDay.selectedIndex].value
         }
     );
 

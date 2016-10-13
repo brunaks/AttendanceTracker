@@ -29,7 +29,26 @@ public class Schedule {
     }
 
     public enum Days {
-        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+        MONDAY ("MO"), TUESDAY ("TU"), WEDNESDAY ("WE"), THURSDAY ("TH"), FRIDAY ("FR"), SATURDAY ("SA"), SUNDAY ("SU");
+
+        private String code;
+
+        Days(String code) {
+            this.code = code;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public static Days getFromCode(String code) {
+            for (Days day: Days.values())  {
+                if (day.getCode().equalsIgnoreCase(code)) {
+                    return day;
+                }
+            }
+            return null;
+        }
     }
 
     public void addDay(Days day) {

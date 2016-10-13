@@ -48,6 +48,8 @@ public class AddClassRoute implements Route {
         scheduleRequest.endTimeMinutes = Integer.parseInt(endTime.substring(3, 5));
         scheduleRequest.endTimePeriod = Time.TimePeriod.valueOf(endTime.substring(6, 8));
 
+        scheduleRequest.day = Schedule.Days.getFromCode(request.getString("day"));
+
         classRequest.schedules = new ArrayList<>();
         classRequest.schedules.add(scheduleRequest);
         return classRequest;

@@ -41,7 +41,8 @@
                 <label class="control-label col-sm-2 col-sm-offset-2" for="className">Class Name</label>
 
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="Class Name" id="className" name="className" required>
+                    <input type="text" class="form-control" placeholder="Class Name" id="className" name="className"
+                           required>
                 </div>
             </div>
 
@@ -49,7 +50,24 @@
                 <label class="control-label col-sm-2 col-sm-offset-2" for="professorName">Professor Name</label>
 
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName" name="professorName" required>
+                    <input type="text" class="form-control" placeholder="Professor Name" id="professorName"
+                           name="professorName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2 col-sm-offset-2" for="day">Day</label>
+
+                <div class="col-sm-5">
+                    <select class="form-control" id="day">
+                        <option value="MO">Monday</option>
+                        <option value="TU">Tuesday</option>
+                        <option value="WE">Wednesday</option>
+                        <option value="TH">Thursday</option>
+                        <option value="FR">Friday</option>
+                        <option value="SA">Saturday</option>
+                        <option value="SU">Sunday</option>
+                    </select>
                 </div>
             </div>
 
@@ -58,9 +76,9 @@
 
                 <div class="col-sm-2">
                     <div class="input-group date datetimepicker">
-                    <input type="text" class="form-control" id="startTime" name="startTime" required/>
+                        <input type="text" class="form-control" id="startTime" name="startTime" required/>
 
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 
                     </div>
                 </div>
@@ -71,16 +89,17 @@
 
                 <div class="col-sm-2">
                     <div class="input-group date datetimepicker">
-                    <input type="text" class="form-control" id="endTime" name="endTime" required/>
+                        <input type="text" class="form-control" id="endTime" name="endTime" required/>
 
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary col-sm-offset-8 col-sm-1" type="button" onclick="add_class()">Save</button>
+                <button class="btn btn-primary col-sm-offset-8 col-sm-1" type="button" onclick="add_class()">Save
+                </button>
             </div>
         </form>
     </div>
