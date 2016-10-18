@@ -1,5 +1,10 @@
-package Core;
+package Core.Routes;
 
+import Core.*;
+import Core.Entities.Schedule;
+import Core.Entities.Time;
+import Core.Persistence.ClassRepository;
+import Core.UseCases.AddClass;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 import spark.Request;

@@ -1,5 +1,8 @@
 package Core;
 
+import Core.Entities.Schedule;
+import Core.Entities.Time;
+
 /**
  * Created by I848075 on 08/08/2016.
  */

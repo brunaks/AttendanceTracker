@@ -1,11 +1,11 @@
 package test;
 
-import Core.Schedule;
-import Core.Time;
+import Core.Entities.Schedule;
+import Core.Entities.Time;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static Core.Schedule.Days.*;
+import static Core.Entities.Schedule.Days.*;
 import static org.junit.Assert.assertEquals;
 
 /**

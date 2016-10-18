@@ -1,4 +1,6 @@
-package Core;
+package Core.Persistence;
+
+import Core.Entities.Class;
 
 import java.util.List;
 

@@ -1,4 +1,8 @@
-package Core;
+package Core.Persistence;
+
+import Core.Entities.Class;
+import Core.Entities.Schedule;
+import Core.Entities.Time;
 
 import java.net.URISyntaxException;
 import java.sql.Connection;

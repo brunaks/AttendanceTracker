@@ -3,7 +3,7 @@ package Core;
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.
  */
-public class FakeAddClassesReceiver implements AddClassReceiver {
+public class AddClassesReceiver implements AddClassReceiver {
 
     public boolean success;
     public boolean endTimeBeforeStartTime;

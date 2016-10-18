@@ -1,7 +1,13 @@
 package test;
 
 import Core.*;
-import Core.Class;
+import Core.Entities.Class;
+import Core.Entities.Schedule;
+import Core.Entities.Time;
+import Core.Persistence.ClassRepository;
+import Core.Persistence.ClassRepositoryInMemory;
+import Core.UseCases.AddClass;
+import Core.UseCases.ReadClasses;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,18 +15,20 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.
  */
 public class AddClassesTest {
 
-    private FakeAddClassesReceiver receiver;
+    private AddClassesReceiver receiver;
     private ClassRepository classRepository;
     private AddClass addClasses;
 
     @Before
     public void setUp() {
-        receiver = new FakeAddClassesReceiver();
+        receiver = new AddClassesReceiver();
         classRepository = new ClassRepositoryInMemory();
         addClasses = new AddClass(classRepository, receiver);
     }
@@ -56,15 +64,9 @@ public class AddClassesTest {
                 10, 30, Time.TimePeriod.PM);
         addClasses.addClassFromRequest(classRequest);
 
-        ClassReader classReader = new ClassReader(classRepository);
-        List<Class> classes = classReader.getAll();
-        Class actualClass = classes.get(0);
-
-        Assert.assertEquals(classRequest.className, actualClass.getName());
-        Assert.assertEquals("07:00 PM", actualClass.getSchedule().get(0).getStartTime());
-        Assert.assertEquals("10:30 PM", actualClass.getSchedule().get(0).getEndTime());
-        Assert.assertEquals(Schedule.Days.MONDAY, actualClass.getSchedule().get(0).getDay());
-        Assert.assertEquals(classRequest.professsorName, actualClass.getProfessorName());
+        ReadClasses readClasses = new ReadClasses(classRepository);
+        List<ClassRequest> classes = readClasses.getAll();
+        assertClassesAreEqual(classRequest, classes.get(0));
         Assert.assertTrue(receiver.success);
     }
 
@@ -85,24 +87,12 @@ public class AddClassesTest {
         addClasses.addClassFromRequest(classRequest2);
         Assert.assertTrue(receiver.success);
 
-        ClassReader classReader = new ClassReader(classRepository);
-        List<Class> classes = classReader.getAll();
+        ReadClasses readClasses = new ReadClasses(classRepository);
+        List<ClassRequest> classes = readClasses.getAll();
 
         Assert.assertEquals(2, classes.size());
-        Class actualClass1 = classes.get(0);
-        Class actualClass2 = classes.get(1);
-
-        Assert.assertEquals(classRequest.className, actualClass1.getName());
-        Assert.assertEquals("07:00 PM", actualClass1.getSchedule().get(0).getStartTime());
-        Assert.assertEquals("10:30 PM", actualClass1.getSchedule().get(0).getEndTime());
-        Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
-        Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
-
-        Assert.assertEquals(classRequest2.className, actualClass2.getName());
-        Assert.assertEquals("08:00 PM", actualClass2.getSchedule().get(0).getStartTime());
-        Assert.assertEquals("10:00 PM", actualClass2.getSchedule().get(0).getEndTime());
-        Assert.assertEquals(Schedule.Days.TUESDAY, actualClass2.getSchedule().get(0).getDay());
-        Assert.assertEquals(classRequest.professsorName, actualClass2.getProfessorName());
+        assertClassesAreEqual(classRequest, classes.get(0));
+        assertClassesAreEqual(classRequest, classes.get(1));
     }
 
     @Test
@@ -122,17 +112,11 @@ public class AddClassesTest {
         addClasses.addClassFromRequest(classRequest2);
         Assert.assertFalse(receiver.success);
 
-        ClassReader classReader = new ClassReader(classRepository);
-        List<Class> classes = classReader.getAll();
+        ReadClasses readClasses = new ReadClasses(classRepository);
+        List<ClassRequest> classes = readClasses.getAll();
 
         Assert.assertEquals(1, classes.size());
-        Class actualClass1 = classes.get(0);
-
-        Assert.assertEquals(classRequest.className, actualClass1.getName());
-        Assert.assertEquals("07:00 PM", actualClass1.getSchedule().get(0).getStartTime());
-        Assert.assertEquals("10:30 PM", actualClass1.getSchedule().get(0).getEndTime());
-        Assert.assertEquals(Schedule.Days.MONDAY, actualClass1.getSchedule().get(0).getDay());
-        Assert.assertEquals(classRequest.professsorName, actualClass1.getProfessorName());
+        assertClassesAreEqual(classRequest, classes.get(0));
     }
 
     @Test
@@ -142,11 +126,30 @@ public class AddClassesTest {
                 10, 30, Time.TimePeriod.PM);
         addClasses.addClassFromRequest(classRequest);
 
-        ClassReader classReader = new ClassReader(classRepository);
-        List<Class> classes = classReader.getAll();
+        ReadClasses readClasses = new ReadClasses(classRepository);
+        List<ClassRequest> classes = readClasses.getAll();
 
         Assert.assertEquals(0, classes.size());
         Assert.assertTrue(receiver.endTimeBeforeStartTime);
+    }
+
+    private void assertClassesAreEqual(ClassRequest classRequest, ClassRequest retrievedClass) {
+        assertEquals(classRequest.className, retrievedClass.className);
+        assertEquals(classRequest.professsorName, retrievedClass.professsorName);
+        assertEquals(classRequest.schedules.size(), retrievedClass.schedules.size());
+        for (int index = 0; index < classRequest.schedules.size(); index++) {
+            ScheduleRequest schedule = classRequest.schedules.get(index);
+            ScheduleRequest retrievedSchedule = classRequest.schedules.get(index);
+            assertEquals(schedule.startTimeHours, retrievedSchedule.startTimeHours);
+            assertEquals(schedule.startTimeMinutes, retrievedSchedule.startTimeMinutes);
+            assertEquals(schedule.startTimePeriod, retrievedSchedule.startTimePeriod);
+
+            assertEquals(schedule.endTimeHours, retrievedSchedule.endTimeHours);
+            assertEquals(schedule.endTimeMinutes, retrievedSchedule.endTimeMinutes);
+            assertEquals(schedule.endTimePeriod, retrievedSchedule.endTimePeriod);
+
+            assertEquals(schedule.day,retrievedSchedule.day);
+        }
     }
 }
 

@@ -1,7 +1,4 @@
-package Core;
-
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+package Core.Entities;
 
 /**
  * Created by Bruna Koch Schmitt on 07/08/2016.

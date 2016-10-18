@@ -24,12 +24,14 @@
     <script src="scripts.js"></script>
     <title>Attendance Tracker</title>
 </head>
-<body onload="load_menu()">
+<body onload="load_menu();buildListOfClasses()">
 <div class="container">
     <div id="menu"></div>
     <div class="well">
-        <h3 class="text-primary text-center">Attendance Tracker App</h3>
-        <img src="calendar.png" class="img-responsive" alt="time"/>
+            <table class="table table-hover" id="classes">
+
+            </table>
+        </div>
     </div>
 </div>
 </body>

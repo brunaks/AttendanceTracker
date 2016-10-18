@@ -1,4 +1,9 @@
-package Core;
+package Core.UseCases;
+
+import Core.*;
+import Core.Entities.Class;
+import Core.Entities.Schedule;
+import Core.Persistence.ClassRepository;
 
 import java.util.List;
 
@@ -16,8 +21,7 @@ public class AddClass {
     }
 
     private void addClass(Class myClass) {
-        ClassReader reader = new ClassReader(repository);
-        List<Class> classes = reader.getAll();
+        List<Class> classes = repository.getAll();
 
         for (Schedule schedule : myClass.getSchedule()) {
             if (schedule.endTimeIsBeforeStartTime()) {
