@@ -70,7 +70,7 @@ public class ReadClassesTest {
     private ClassRequest givenClass(String className, String professorName, int startHours, int startMinutes, TimePeriod startPeriod, int endHours, int endMinutes, TimePeriod endPeriod, Schedule.Days day) {
         ClassRequest classRequest = new ClassRequest();
         classRequest.className = className;
-        classRequest.professsorName = professorName;
+        classRequest.professorName = professorName;
         ScheduleRequest schedule = new ScheduleRequest();
         schedule.startTimeHours = startHours;
         schedule.startTimeMinutes = startMinutes;
@@ -87,7 +87,7 @@ public class ReadClassesTest {
 
     private void assertClassesAreEqual(ClassRequest classRequest, ClassRequest retrievedClass) {
         assertEquals(classRequest.className, retrievedClass.className);
-        assertEquals(classRequest.professsorName, retrievedClass.professsorName);
+        assertEquals(classRequest.professorName, retrievedClass.professorName);
         assertEquals(classRequest.schedules.size(), retrievedClass.schedules.size());
         for (int index = 0; index < classRequest.schedules.size(); index++) {
             ScheduleRequest schedule = classRequest.schedules.get(index);

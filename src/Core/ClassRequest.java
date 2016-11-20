@@ -12,7 +12,7 @@ import java.util.List;
 public class ClassRequest {
 
     public String className;
-    public String professsorName;
+    public String professorName;
     public List<ScheduleRequest> schedules;
 
     public static List<ScheduleRequest> convertFrom(List<Schedule> schedules) {

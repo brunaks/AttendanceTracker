@@ -48,7 +48,7 @@ public class AddClass {
     public void addClassFromRequest(ClassRequest classRequest) {
         Class aClass = new Class();
         aClass.setName(classRequest.className);
-        aClass.setProfessorName(classRequest.professsorName);
+        aClass.setProfessorName(classRequest.professorName);
         Schedule schedule = new Schedule();
         schedule.addStartTime(classRequest.schedules.get(0).startTimeHours, classRequest.schedules.get(0).startTimeMinutes, classRequest.schedules.get(0).startTimePeriod);
         schedule.addEndTime(classRequest.schedules.get(0).endTimeHours, classRequest.schedules.get(0).endTimeMinutes, classRequest.schedules.get(0).endTimePeriod);

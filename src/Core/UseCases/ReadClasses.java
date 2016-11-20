@@ -28,7 +28,7 @@ public class ReadClasses {
         for (Class myClass : classes) {
             ClassRequest classRequest = new ClassRequest();
             classRequest.className = myClass.getName();
-            classRequest.professsorName = myClass.getProfessorName();
+            classRequest.professorName = myClass.getProfessorName();
             classRequest.schedules = ClassRequest.convertFrom(myClass.getSchedule());
             classRequests.add(classRequest);
         }

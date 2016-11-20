@@ -39,7 +39,7 @@ public class AddClassesTest {
 
         ClassRequest classRequest = new ClassRequest();
         classRequest.className = className;
-        classRequest.professsorName = professorName;
+        classRequest.professorName = professorName;
 
         ScheduleRequest scheduleRequest = new ScheduleRequest();
         scheduleRequest.startTimeHours = startTimeHour;
@@ -135,7 +135,7 @@ public class AddClassesTest {
 
     private void assertClassesAreEqual(ClassRequest classRequest, ClassRequest retrievedClass) {
         assertEquals(classRequest.className, retrievedClass.className);
-        assertEquals(classRequest.professsorName, retrievedClass.professsorName);
+        assertEquals(classRequest.professorName, retrievedClass.professorName);
         assertEquals(classRequest.schedules.size(), retrievedClass.schedules.size());
         for (int index = 0; index < classRequest.schedules.size(); index++) {
             ScheduleRequest schedule = classRequest.schedules.get(index);

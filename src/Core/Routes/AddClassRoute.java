@@ -36,10 +36,10 @@ public class AddClassRoute implements Route {
         return converter.toJson(receiver);
     }
 
-    private ClassRequest convertRequest(JSONObject request) {
+    public ClassRequest convertRequest(JSONObject request) {
         ClassRequest classRequest = new ClassRequest();
         classRequest.className = request.getString("className");
-        classRequest.professsorName = request.getString("professorName");
+        classRequest.professorName = request.getString("professorName");
 
         ScheduleRequest scheduleRequest = new ScheduleRequest();
         String startTime = request.getString("startTime");

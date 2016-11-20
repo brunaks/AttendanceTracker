@@ -1,4 +1,4 @@
-package main;
+package Core.Routes;
 
 import Core.Persistence.ClassRepository;
 import Core.Persistence.PostgresqlClassRepository;

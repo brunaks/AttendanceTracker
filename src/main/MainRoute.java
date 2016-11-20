@@ -3,6 +3,7 @@ package main;
 import Core.*;
 import Core.Persistence.PostgresqlClassRepository;
 import Core.Routes.AddClassRoute;
+import Core.Routes.ReadClassesRoute;
 import spark.Spark;
 
 /**
